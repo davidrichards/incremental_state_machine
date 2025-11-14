@@ -1,0 +1,41 @@
+[project]
+name = "incremental_state_machine"
+version = "0.1.0"
+description = "an exploration of how an agent + state machine can work to incrementally improve in an environment"
+authors = [{ name = "davidrichards" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "core @ git+https://github.com/davidrichards/core.git@main",
+    "typer>=0.12",
+    "copier>=9.2",
+    "rich>=13.7",
+    "pydantic>=2.0.0",
+    "pyyaml>=6.0",
+    "pytest>=7.0.0",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "psutil>=5.9.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/davidrichards/incremental_state_machine"
+Repository = "https://github.com/davidrichards/incremental_state_machine"
+Issues = "https://github.com/davidrichards/incremental_state_machine/issues"
+
+[project.scripts]
+incremental_state_machine = "incremental_state_machine.entry_points.cli.__main__:app"
+
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+

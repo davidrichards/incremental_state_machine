@@ -1,0 +1,7 @@
+name: "incremental_state_machine"
+version: "0.1.0"
+description: "an exploration of how an agent + state machine can work to incrementally improve in an environment"
+port_base: 9000
+port_offset: 0
+git_repo: "https://github.com/davidrichards/incremental_state_machine"
+git_host_username: "davidrichards"

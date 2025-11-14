@@ -1,0 +1,5 @@
+# Install the package itself (includes all dependencies from pyproject.toml)
+-e .
+
+# Git dependency in editable mode for Docker compatibility
+-e git+https://github.com/davidrichards/core.git@main#egg=core
