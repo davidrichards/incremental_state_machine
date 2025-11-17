@@ -1,0 +1,109 @@
+---
+name: "databricks_discovery"
+label: "Databricks Discovery Machine"
+description: "Incremental state machine for learning Databricks discovery operations with agent variability"
+
+states:
+  idle:
+    label: "Idle"
+    description: "No discovery has begun"
+    type: "normal"
+
+  workspace_listing:
+    label: "Workspace Listing"
+    description: "Listing workspace objects"
+    type: "normal"
+
+  jobs_listing:
+    label: "Jobs Listing"
+    description: "Discovering job definitions"
+    type: "normal"
+
+  clusters_listing:
+    label: "Clusters Listing"
+    description: "Discovering clusters"
+    type: "normal"
+
+  compute_listing:
+    label: "Compute Listing"
+    description: "Listing compute resources (clusters + policies)"
+    type: "normal"
+
+  summary_ready:
+    label: "Summary Ready"
+    description: "A discovery summary can be emitted"
+    type: "normal"
+
+  exploration_complete:
+    label: "Exploration Complete"
+    description: "All desired discovery steps completed"
+    type: "final"
+
+operations:
+  - name: "list_workspace"
+    label: "List Workspace"
+    type: "run"
+    cmd: "databricks workspace ls"
+    from_state: "idle"
+    to_state: "workspace_listing"
+
+  - name: "list_jobs"
+    label: "List Jobs"
+    type: "run"
+    cmd: "databricks jobs list"
+    from_state: "workspace_listing"
+    to_state: "jobs_listing"
+
+  - name: "list_clusters"
+    label: "List Clusters"
+    type: "run"
+    cmd: "databricks clusters list"
+    from_state: "jobs_listing"
+    to_state: "clusters_listing"
+
+  - name: "list_compute"
+    label: "List Compute"
+    type: "run"
+    cmd: "databricks compute list"
+    from_state: "clusters_listing"
+    to_state: "compute_listing"
+
+  - name: "summarize_exploration"
+    label: "Summarize Exploration"
+    type: "run"
+    cmd: "echo 'Summaries compiled from exploration results'"
+    from_state: "compute_listing"
+    to_state: "summary_ready"
+
+  - name: "complete"
+    label: "Complete"
+    type: "run"
+    cmd: "echo 'Exploration complete'"
+    from_state: "summary_ready"
+    to_state: "exploration_complete"
+
+transitions:
+  - from_state: "idle"
+    to_state: "workspace_listing"
+    operations: ["run"]
+
+  - from_state: "workspace_listing"
+    to_state: "jobs_listing"
+    operations: ["run"]
+
+  - from_state: "jobs_listing"
+    to_state: "clusters_listing"
+    operations: ["run"]
+
+  - from_state: "clusters_listing"
+    to_state: "compute_listing"
+    operations: ["run"]
+
+  - from_state: "compute_listing"
+    to_state: "summary_ready"
+    operations: ["run"]
+
+  - from_state: "summary_ready"
+    to_state: "exploration_complete"
+    operations: ["run"]
+

@@ -50,8 +50,6 @@ var/secrets/*
 !var/secrets/.gitkeep
 var/specs/*
 !var/specs/.gitkeep
-var/state/*
-!var/state/.gitkeep
 var/work/*
 !var/work/.gitkeep
 

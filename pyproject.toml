@@ -27,6 +27,8 @@ Issues = "https://github.com/davidrichards/incremental_state_machine/issues"
 
 [project.scripts]
 incremental_state_machine = "incremental_state_machine.entry_points.cli.__main__:app"
+db_learn = "incremental_state_machine.entry_points.cli.db_learn_cli:app"
+learn_db = "incremental_state_machine.entry_points.cli.db_learn_cli:app"
 
 [build-system]
 requires = ["setuptools>=65", "wheel"]

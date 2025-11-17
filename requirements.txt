@@ -3,3 +3,4 @@
 
 # Git dependency in editable mode for Docker compatibility
 -e git+https://github.com/davidrichards/core.git@main#egg=core
+-e git+https://github.com/davidrichards/bitgen.git@main#egg=core

@@ -1,0 +1,115 @@
+{"command": "databricks fs", "category": "Databricks Workspace", "description": "Filesystem related commands", "status": "in_progress", "questions": ["how_dbfs"], "label": "db_fs"}
+{"command": "databricks git-credentials", "category": "Databricks Workspace", "description": "Registers personal access token for Databricks to do operations on behalf of the user.", "status": "todo"}
+{"command": "databricks repos", "category": "Databricks Workspace", "description": "Manage git repos in Databricks Repos.", "status": "todo"}
+{"command": "databricks secrets", "category": "Databricks Workspace", "description": "Manage secrets, secret scopes, and access permissions.", "status": "todo"}
+{"command": "databricks workspace", "category": "Databricks Workspace", "description": "List, import, export, and delete notebooks and folders.", "status": "todo"}
+{"command": "databricks cluster-policies", "category": "Compute", "description": "Control cluster configuration based on rules.", "status": "todo"}
+{"command": "databricks clusters", "category": "Compute", "description": "Create, start, edit, list, terminate, and delete clusters.", "status": "todo", "questions": [], "label": "db_clusters"}
+{"command": "databricks global-init-scripts", "category": "Compute", "description": "Manage global initialization scripts.", "status": "todo"}
+{"command": "databricks instance-pools", "category": "Compute", "description": "Manage instance pools to reduce cluster start time.", "status": "todo"}
+{"command": "databricks instance-profiles", "category": "Compute", "description": "Manage instance profiles for launching clusters.", "status": "todo"}
+{"command": "databricks libraries", "category": "Compute", "description": "Install, uninstall, and check library status on clusters.", "status": "todo"}
+{"command": "databricks policy-compliance-for-clusters", "category": "Compute", "description": "Manage policy compliance status of clusters.", "status": "todo"}
+{"command": "databricks policy-families", "category": "Compute", "description": "View available policy families.", "status": "todo"}
+{"command": "databricks jobs", "category": "Workflows", "description": "Create, edit, and delete jobs.", "status": "todo"}
+{"command": "databricks policy-compliance-for-jobs", "category": "Workflows", "description": "Manage policy compliance status of jobs.", "status": "todo"}
+{"command": "databricks pipelines", "category": "Delta Live Tables", "description": "Create, edit, delete, start, and view DLT pipelines.", "status": "todo"}
+{"command": "databricks experiments", "category": "Machine Learning", "description": "MLflow experiment management.", "status": "todo"}
+{"command": "databricks model-registry", "category": "Machine Learning", "description": "Workspace Model Registry API.", "status": "todo"}
+{"command": "databricks serving-endpoints", "category": "Real-time Serving", "description": "Manage model serving endpoints.", "status": "todo"}
+{"command": "databricks current-user", "category": "Identity and Access Management", "description": "Retrieve the current authenticated user.", "status": "todo"}
+{"command": "databricks groups", "category": "Identity and Access Management", "description": "Manage identity groups.", "status": "todo"}
+{"command": "databricks groups-v2", "category": "Identity and Access Management", "description": "Manage identity groups (v2).", "status": "todo"}
+{"command": "databricks permissions", "category": "Identity and Access Management", "description": "Manage access control permissions.", "status": "todo"}
+{"command": "databricks service-principals", "category": "Identity and Access Management", "description": "Manage service principals.", "status": "todo"}
+{"command": "databricks service-principals-v2", "category": "Identity and Access Management", "description": "Manage service principals (v2).", "status": "todo"}
+{"command": "databricks users", "category": "Identity and Access Management", "description": "Manage user identities.", "status": "todo"}
+{"command": "databricks users-v2", "category": "Identity and Access Management", "description": "Manage user identities (v2).", "status": "todo"}
+{"command": "databricks alerts", "category": "Databricks SQL", "description": "CRUD operations on alerts.", "status": "todo"}
+{"command": "databricks alerts-legacy", "category": "Databricks SQL", "description": "Legacy alerts API.", "status": "todo"}
+{"command": "databricks alerts-v2", "category": "Databricks SQL", "description": "New SQL Alerts API.", "status": "todo"}
+{"command": "databricks dashboards", "category": "Databricks SQL", "description": "Manage dashboards.", "status": "todo"}
+{"command": "databricks data-sources", "category": "Databricks SQL", "description": "Assist in creating query objects.", "status": "todo"}
+{"command": "databricks queries", "category": "Databricks SQL", "description": "CRUD operations on SQL queries.", "status": "todo"}
+{"command": "databricks queries-legacy", "category": "Databricks SQL", "description": "Legacy query definitions API.", "status": "todo"}
+{"command": "databricks query-history", "category": "Databricks SQL", "description": "Retrieve list of executed SQL queries.", "status": "todo"}
+{"command": "databricks warehouses", "category": "Databricks SQL", "description": "Manage SQL Warehouses.", "status": "todo"}
+{"command": "databricks artifact-allowlists", "category": "Unity Catalog", "description": "Manage allowlists for artifacts.", "status": "todo"}
+{"command": "databricks catalogs", "category": "Unity Catalog", "description": "Manage catalogs (top level namespace).", "status": "todo"}
+{"command": "databricks connections", "category": "Unity Catalog", "description": "Manage external data source connections.", "status": "todo"}
+{"command": "databricks credentials", "category": "Unity Catalog", "description": "Manage authentication credentials.", "status": "todo"}
+{"command": "databricks entity-tag-assignments", "category": "Unity Catalog", "description": "Manage tag assignments.", "status": "todo"}
+{"command": "databricks external-lineage", "category": "Unity Catalog", "description": "Manage lineage relationships with external systems.", "status": "todo"}
+{"command": "databricks external-locations", "category": "Unity Catalog", "description": "Manage external storage locations.", "status": "todo"}
+{"command": "databricks external-metadata", "category": "Unity Catalog", "description": "Manage metadata about external systems.", "status": "todo"}
+{"command": "databricks functions", "category": "Unity Catalog", "description": "Manage UDFs.", "status": "todo"}
+{"command": "databricks grants", "category": "Unity Catalog", "description": "Manage access grants.", "status": "todo"}
+{"command": "databricks metastores", "category": "Unity Catalog", "description": "Manage metastores.", "status": "todo"}
+{"command": "databricks model-versions", "category": "Unity Catalog", "description": "Manage MLflow model versions.", "status": "todo"}
+{"command": "databricks online-tables", "category": "Unity Catalog", "description": "Manage online tables.", "status": "todo"}
+{"command": "databricks policies", "category": "Unity Catalog", "description": "Manage ABAC policies.", "status": "todo"}
+{"command": "databricks quality-monitors", "category": "Unity Catalog", "description": "Manage data/model quality monitors.", "status": "todo"}
+{"command": "databricks registered-models", "category": "Unity Catalog", "description": "Manage registered models.", "status": "todo"}
+{"command": "databricks resource-quotas", "category": "Unity Catalog", "description": "Manage UC resource quotas.", "status": "todo"}
+{"command": "databricks rfa", "category": "Unity Catalog", "description": "Request for Access workflow.", "status": "todo"}
+{"command": "databricks schemas", "category": "Unity Catalog", "description": "Manage schemas/databases.", "status": "todo"}
+{"command": "databricks storage-credentials", "category": "Unity Catalog", "description": "Manage storage credentials.", "status": "todo"}
+{"command": "databricks system-schemas", "category": "Unity Catalog", "description": "Manage system schemas.", "status": "todo"}
+{"command": "databricks table-constraints", "category": "Unity Catalog", "description": "Manage primary/foreign keys.", "status": "todo"}
+{"command": "databricks tables", "category": "Unity Catalog", "description": "Manage tables.", "status": "todo"}
+{"command": "databricks temporary-path-credentials", "category": "Unity Catalog", "description": "Manage temporary downscoped path credentials.", "status": "todo"}
+{"command": "databricks temporary-table-credentials", "category": "Unity Catalog", "description": "Manage temp table credentials.", "status": "todo"}
+{"command": "databricks volumes", "category": "Unity Catalog", "description": "Manage volumes.", "status": "todo"}
+{"command": "databricks workspace-bindings", "category": "Unity Catalog", "description": "Manage workspace bindings.", "status": "todo"}
+{"command": "databricks providers", "category": "Delta Sharing", "description": "Manage data providers.", "status": "todo"}
+{"command": "databricks recipient-activation", "category": "Delta Sharing", "description": "Recipient activation in open sharing model.", "status": "todo"}
+{"command": "databricks recipient-federation-policies", "category": "Delta Sharing", "description": "Federation policies for OIDC recipients.", "status": "todo"}
+{"command": "databricks recipients", "category": "Delta Sharing", "description": "Manage recipients.", "status": "todo"}
+{"command": "databricks shares", "category": "Delta Sharing", "description": "Manage data shares.", "status": "todo"}
+{"command": "databricks ip-access-lists", "category": "Settings", "description": "Manage IP access lists.", "status": "todo"}
+{"command": "databricks notification-destinations", "category": "Settings", "description": "Manage workspace notification destinations.", "status": "todo"}
+{"command": "databricks settings", "category": "Settings", "description": "Manage workspace settings.", "status": "todo"}
+{"command": "databricks token-management", "category": "Settings", "description": "Admins manage user tokens.", "status": "todo"}
+{"command": "databricks tokens", "category": "Settings", "description": "Create, list, revoke tokens.", "status": "todo"}
+{"command": "databricks workspace-conf", "category": "Settings", "description": "Update advanced workspace settings.", "status": "todo"}
+{"command": "databricks bundle", "category": "Developer Tools", "description": "Manage Databricks Asset Bundles.", "status": "todo"}
+{"command": "databricks sync", "category": "Developer Tools", "description": "Synchronize a local directory to workspace.", "status": "todo"}
+{"command": "databricks vector-search-endpoints", "category": "Vector Search", "description": "Manage vector search endpoints.", "status": "todo"}
+{"command": "databricks vector-search-indexes", "category": "Vector Search", "description": "Manage vector search indexes.", "status": "todo"}
+{"command": "databricks genie", "category": "Dashboards", "description": "AI/BI no-code dashboards.", "status": "todo"}
+{"command": "databricks lakeview", "category": "Dashboards", "description": "Manage Lakeview dashboards.", "status": "todo"}
+{"command": "databricks lakeview-embedded", "category": "Dashboards", "description": "Token-based embedded Lakeview APIs.", "status": "todo"}
+{"command": "databricks consumer-fulfillments", "category": "Marketplace", "description": "Preview consumer installations.", "status": "todo"}
+{"command": "databricks consumer-installations", "category": "Marketplace", "description": "Interact with marketplace installations.", "status": "todo"}
+{"command": "databricks consumer-listings", "category": "Marketplace", "description": "Manage consumer listings.", "status": "todo"}
+{"command": "databricks consumer-personalization-requests", "category": "Marketplace", "description": "Manage personalization requests.", "status": "todo"}
+{"command": "databricks consumer-providers", "category": "Marketplace", "description": "Manage consumer-side providers.", "status": "todo"}
+{"command": "databricks provider-exchange-filters", "category": "Marketplace", "description": "Manage exchange filters.", "status": "todo"}
+{"command": "databricks provider-exchanges", "category": "Marketplace", "description": "Manage provider exchanges.", "status": "todo"}
+{"command": "databricks provider-files", "category": "Marketplace", "description": "File APIs for provider assets.", "status": "todo"}
+{"command": "databricks provider-listings", "category": "Marketplace", "description": "Manage provider listings.", "status": "todo"}
+{"command": "databricks provider-personalization-requests", "category": "Marketplace", "description": "Alternate personalization request system.", "status": "todo"}
+{"command": "databricks provider-provider-analytics-dashboards", "category": "Marketplace", "description": "Manage templated analytics solutions.", "status": "todo"}
+{"command": "databricks provider-providers", "category": "Marketplace", "description": "Manage marketplace providers.", "status": "todo"}
+{"command": "databricks apps", "category": "Apps", "description": "Run apps directly on customer Databricks instances.", "status": "todo"}
+{"command": "databricks clean-room-asset-revisions", "category": "Clean Rooms", "description": "Manage clean room asset revisions.", "status": "todo"}
+{"command": "databricks clean-room-assets", "category": "Clean Rooms", "description": "Manage clean room assets.", "status": "todo"}
+{"command": "databricks clean-room-auto-approval-rules", "category": "Clean Rooms", "description": "Manage auto-approval rules.", "status": "todo"}
+{"command": "databricks clean-room-task-runs", "category": "Clean Rooms", "description": "Manage task runs.", "status": "todo"}
+{"command": "databricks clean-rooms", "category": "Clean Rooms", "description": "Manage clean rooms.", "status": "todo"}
+{"command": "databricks database", "category": "Database", "description": "Database Instances API.", "status": "todo"}
+{"command": "databricks psql", "category": "Database", "description": "Connect to a Database Instance via SQL.", "status": "todo"}
+{"command": "databricks quality-monitor-v2", "category": "Quality Monitor v2", "description": "Manage data quality for UC objects.", "status": "todo"}
+{"command": "databricks service-principal-secrets-proxy", "category": "OAuth", "description": "Manage service principal secrets at workspace level.", "status": "todo"}
+{"command": "databricks workspace-iam-v2", "category": "Identity and Access Management (v2)", "description": "Manage workspace access for identities.", "status": "todo"}
+{"command": "databricks account", "category": "Additional Commands", "description": "Databricks Account commands.", "status": "todo"}
+{"command": "databricks api", "category": "Additional Commands", "description": "Perform raw Databricks API call.", "status": "todo"}
+{"command": "databricks auth", "category": "Additional Commands", "description": "Authentication commands.", "status": "todo"}
+{"command": "databricks completion", "category": "Additional Commands", "description": "Generate autocompletion script.", "status": "todo"}
+{"command": "databricks configure", "category": "Additional Commands", "description": "Configure authentication.", "status": "todo"}
+{"command": "databricks data-quality", "category": "Additional Commands", "description": "Manage data quality for UC objects.", "status": "todo"}
+{"command": "databricks help", "category": "Additional Commands", "description": "Help about any command.", "status": "todo"}
+{"command": "databricks labs", "category": "Additional Commands", "description": "Manage Databricks Labs installations.", "status": "todo"}
+{"command": "databricks tag-policies", "category": "Additional Commands", "description": "Manage governed tag policies.", "status": "todo"}
+{"command": "databricks version", "category": "Additional Commands", "description": "Retrieve CLI version.", "status": "todo"}
+{"command": "databricks workspace-settings-v2", "category": "Additional Commands", "description": "Manage workspace settings (v2).", "status": "todo", "questions": [], "label": "workspace-settings-v2"}

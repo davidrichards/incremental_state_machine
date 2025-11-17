@@ -1,0 +1,24 @@
+active:
+  build: null
+  design: null
+  offer: null
+  question: null
+  task: null
+  validation: null
+created_at: '2025-11-15T11:31:09.109785+00:00'
+data:
+  workspace_url: https://dbc-bae05062-1fd1.cloud.databricks.com/
+description: null
+id: 85ea4527-3fd5-44b5-ab46-ded2db57629b
+label: question
+metadata: {}
+name: databricks_tutorial
+recents:
+  build: []
+  design: []
+  offer: []
+  question: []
+  task: []
+  validation: []
+status: active
+updated_at: '2025-11-15T11:34:12.089773+00:00'
