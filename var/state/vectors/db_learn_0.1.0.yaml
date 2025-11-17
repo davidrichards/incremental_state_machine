@@ -1,0 +1,39 @@
+id: 0c3d35ee-13e8-4275-8bd6-0c73120754d7
+created_at: '2025-11-17T07:04:02.657036+00:00'
+updated_at: '2025-11-17T07:06:45.769531+00:00'
+bundle_label: db_learn
+bundle_path: qavs/db_learn.0.1.0.jsonl
+version: 0.1.0
+status: active
+chunking_config:
+  strategy_type: semantic_chunking
+  chunk_size: null
+  overlap: null
+  separator: null
+  additional_config: {}
+embedding_config:
+  model_type: sentence_transformers
+  model_name: null
+  dimension: 384
+  similarity_metric: cosine
+  additional_config: {}
+hnsw_config:
+  M: 16
+  ef_construction: 200
+  ef: 50
+  max_elements: 10000
+  seed: 42
+reranking_policies:
+  enabled: false
+  strategy: null
+  parameters: {}
+metrics:
+  build_time_seconds: 1.9073486328125e-05
+  index_size_bytes: null
+  num_vectors: null
+  memory_usage_mb: null
+  last_search_latency_ms: null
+index_file_path: var/state/vectors/db_learn_0.1.0.hnsw
+metadata_file_path: var/state/vectors/db_learn_0.1.0.yaml
+description: null
+tags: []
