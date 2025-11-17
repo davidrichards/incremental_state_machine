@@ -1,5 +1,5 @@
 {"command": "databricks fs", "category": "Databricks Workspace", "description": "Filesystem related commands", "status": "in_progress", "questions": ["how_dbfs"], "label": "db_fs"}
-{"command": "databricks git-credentials", "category": "Databricks Workspace", "description": "Registers personal access token for Databricks to do operations on behalf of the user.", "status": "todo"}
+{"command": "databricks git-credentials", "category": "Databricks Workspace", "description": "Registers personal access token for Databricks to do operations on behalf of the user.", "status": "in_progress", "questions": ["git_flow_with_git_credentials"], "label": "git_credentials"}
 {"command": "databricks repos", "category": "Databricks Workspace", "description": "Manage git repos in Databricks Repos.", "status": "todo"}
 {"command": "databricks secrets", "category": "Databricks Workspace", "description": "Manage secrets, secret scopes, and access permissions.", "status": "todo"}
 {"command": "databricks workspace", "category": "Databricks Workspace", "description": "List, import, export, and delete notebooks and folders.", "status": "todo"}

@@ -24,8 +24,8 @@ class Discussion(BaseModel):
     label: Optional[str] = None
     questions: List[str] = Field(default_factory=list)
 
-    def _get_question_answers(self, question_label: str) -> List[str]:
-        """Get answers for a specific question label using subprocess"""
+    def _get_question_data(self, question_label: str) -> tuple[str, List[str]]:
+        """Get question text and answers for a specific question label using subprocess"""
         try:
             result = subprocess.run(
                 ["question", "get", "--label", question_label, "--format", "json"],
@@ -36,6 +36,9 @@ class Discussion(BaseModel):
 
             question_data = json.loads(result.stdout)
             answers = []
+            question_text = question_data.get(
+                "text", question_label
+            )  # Fallback to label if no text
 
             # Extract answers from validations_by_claim
             if "validations_by_claim" in question_data:
@@ -59,32 +62,30 @@ class Discussion(BaseModel):
                                 if "text" in answer:
                                     answers.append(answer["text"])
 
-            return answers
+            return question_text, answers
 
         except subprocess.CalledProcessError as e:
-            logging.warning(
-                f"Failed to get answers for question '{question_label}': {e}"
-            )
-            return []
+            logging.warning(f"Failed to get data for question '{question_label}': {e}")
+            return question_label, []  # Fallback to label as text
         except json.JSONDecodeError as e:
             logging.warning(
                 f"Failed to parse JSON response for question '{question_label}': {e}"
             )
-            return []
+            return question_label, []  # Fallback to label as text
         except Exception as e:
             logging.warning(
-                f"Unexpected error getting answers for question '{question_label}': {e}"
+                f"Unexpected error getting data for question '{question_label}': {e}"
             )
-            return []
+            return question_label, []  # Fallback to label as text
 
     @computed_field
     @property
     def questions_dict(self) -> Dict[str, List[str]]:
-        """Transform questions list into a dict of {question_label: [answers]}"""
+        """Transform questions list into a dict of {question_text: [answers]}"""
         result = {}
         for question_label in self.questions:
-            answers = self._get_question_answers(question_label)
-            result[question_label] = answers
+            question_text, answers = self._get_question_data(question_label)
+            result[question_text] = answers
         return result
 
     def model_dump(self, **kwargs) -> Dict[str, Any]:
