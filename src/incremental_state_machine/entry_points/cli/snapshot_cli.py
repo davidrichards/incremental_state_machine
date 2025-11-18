@@ -33,6 +33,35 @@ def parse_semver(version_str: str) -> Tuple[int, int, int]:
     return (int(match.group(1)), int(match.group(2)), int(match.group(3)))
 
 
+def format_semver(major: int, minor: int, patch: int) -> str:
+    """Format semantic version tuple into string."""
+    return f"{major}.{minor}.{patch}"
+
+
+def bump_patch_version(version_str: str) -> str:
+    """Bump the patch version of a semantic version string."""
+    major, minor, patch = parse_semver(version_str)
+    return format_semver(major, minor, patch + 1)
+
+
+def get_version_from_filename(file_path: Path) -> str:
+    """Extract version from snapshot filename."""
+    filename = file_path.stem
+    parts = filename.split(".")
+    if len(parts) < 4:
+        raise ValueError(f"Invalid snapshot filename: {filename}")
+    return ".".join(parts[-3:])
+
+
+def get_label_from_filename(file_path: Path) -> str:
+    """Extract label from snapshot filename."""
+    filename = file_path.stem
+    parts = filename.split(".")
+    if len(parts) < 4:
+        raise ValueError(f"Invalid snapshot filename: {filename}")
+    return ".".join(parts[:-3])
+
+
 def find_snapshot_files(
     directory: Path, label: Optional[str] = None, version: Optional[str] = None
 ) -> List[Path]:
@@ -273,6 +302,90 @@ def save_snapshot_to_file(snapshot: Snapshot, file_path: Path):
         yaml.safe_dump(
             snapshot.model_dump(), f, default_flow_style=False, sort_keys=False
         )
+
+
+@app.command()
+def replace(
+    label: Optional[str] = typer.Option(
+        None,
+        "--label",
+        help="Label of snapshot to replace (if not provided, uses most recent)",
+    ),
+    version: Optional[str] = typer.Option(
+        None,
+        "--version",
+        help="Specific version to create (e.g., '1.2.0'). If not provided, bumps patch version",
+    ),
+):
+    """Create a new version of a snapshot by copying an existing one."""
+    directory = resolve_snapshots_directory()
+
+    # Find the source snapshot
+    matching_files = find_snapshot_files(directory, label)
+    source_file = get_most_recent_file(matching_files)
+
+    if not source_file:
+        if label:
+            typer.echo(f"No snapshot found with label '{label}'.")
+        else:
+            typer.echo("No snapshots found.")
+        raise typer.Exit(code=1)
+
+    # Load the source snapshot
+    source_snapshot = load_snapshot_from_file(source_file)
+
+    # Get the current version and label from the source file
+    current_version = get_version_from_filename(source_file)
+    source_label = get_label_from_filename(source_file)
+
+    # Determine the new version
+    if version:
+        # Validate the provided version
+        try:
+            parse_semver(version)
+            new_version = version
+        except ValueError:
+            typer.echo(
+                f"Invalid version format: {version}. Expected format: major.minor.patch"
+            )
+            raise typer.Exit(code=1)
+    else:
+        # Bump the patch version
+        new_version = bump_patch_version(current_version)
+
+    # Create the new filename
+    new_filename = f"{source_label}.{new_version}.yaml"
+    new_file_path = directory / new_filename
+
+    # Check if the target version already exists
+    if new_file_path.exists():
+        typer.echo(
+            f"Snapshot with version {new_version} already exists: {new_file_path}"
+        )
+        raise typer.Exit(code=1)
+
+    # Create a copy of the snapshot with updated timestamps
+    new_snapshot = Snapshot(
+        body=source_snapshot.body,
+        label=source_snapshot.label,
+        session=source_snapshot.session,
+        questions=source_snapshot.questions.copy(),
+        designs=source_snapshot.designs.copy(),
+        offers=source_snapshot.offers.copy(),
+        engagements=source_snapshot.engagements.copy(),
+        tasks=source_snapshot.tasks.copy(),
+        builds=source_snapshot.builds.copy(),
+        state_machines=source_snapshot.state_machines.copy(),
+        agents=source_snapshot.agents.copy(),
+        pipelines=source_snapshot.pipelines.copy(),
+    )
+
+    # Save the new snapshot
+    save_snapshot_to_file(new_snapshot, new_file_path)
+
+    typer.echo(f"Created new snapshot version {new_version}")
+    typer.echo(f"Source: {source_file}")
+    typer.echo(f"Target: {new_file_path}")
 
 
 @app.command()
