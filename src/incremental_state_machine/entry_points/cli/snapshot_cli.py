@@ -153,11 +153,12 @@ def apply_projection(snapshot_data: dict, format_arg: str):
       - "json" or "yaml" (uses default projection)
       - "json:ProjectionName" or "yaml:ProjectionName" (uses specific projection)
     """
+    module = importlib.import_module(
+        "incremental_state_machine.domain.models.snapshot_projections"
+    )
+
     if ":" in format_arg:
         fmt, proj_name = format_arg.split(":", 1)
-        module = importlib.import_module(
-            "incremental_state_machine.domain.models.projections"
-        )
         try:
             Projection = getattr(module, proj_name)
             projected = Projection(**snapshot_data).model_dump()
@@ -166,11 +167,8 @@ def apply_projection(snapshot_data: dict, format_arg: str):
             raise typer.BadParameter(f"Unknown projection: {proj_name}")
     else:
         # Use default projection
-        module = importlib.import_module(
-            "incremental_state_machine.domain.models.projections"
-        )
-        SnapshotDefault = getattr(module, "SnapshotDefault")
-        projected = SnapshotDefault.from_snapshot(snapshot_data).model_dump()
+        Default = getattr(module, "Default")
+        projected = Default.from_snapshot(snapshot_data).model_dump()
         return format_arg, projected
 
 
@@ -302,6 +300,52 @@ def save_snapshot_to_file(snapshot: Snapshot, file_path: Path):
         yaml.safe_dump(
             snapshot.model_dump(), f, default_flow_style=False, sort_keys=False
         )
+
+
+@app.command()
+def create(
+    label: str = typer.Option("default", "--label", help="Label for the new snapshot"),
+    version: str = typer.Option(
+        "0.1.0", "--version", help="Version for the new snapshot (e.g., '1.0.0')"
+    ),
+    format: str = typer.Option(
+        "yaml",
+        "--format",
+        help="Output format: yaml, json, yaml:ProjectionName, json:ProjectionName",
+    ),
+):
+    """Create a new snapshot. Idempotent - won't overwrite existing snapshots."""
+    directory = resolve_snapshots_directory()
+
+    # Validate version format
+    try:
+        parse_semver(version)
+    except ValueError:
+        typer.echo(
+            f"Invalid version format: {version}. Expected format: major.minor.patch"
+        )
+        raise typer.Exit(code=1)
+
+    # Create filename
+    filename = f"{label}.{version}.yaml"
+    file_path = directory / filename
+
+    # Check if file already exists (idempotent behavior)
+    if file_path.exists():
+        typer.echo(f"Snapshot already exists: {file_path}")
+        # Load and return existing snapshot
+        snapshot = load_snapshot_from_file(file_path)
+    else:
+        # Create new empty snapshot
+        snapshot = Snapshot(body="", label=label)
+
+        # Save to file
+        save_snapshot_to_file(snapshot, file_path)
+        typer.echo(f"Created new snapshot: {file_path}")
+
+    # Apply projection and emit output (same as get command)
+    fmt, projected_data = apply_projection(snapshot.model_dump(), format)
+    emit_output(projected_data, fmt)
 
 
 @app.command()
