@@ -10,7 +10,7 @@ data:
   workspace_url: https://dbc-bae05062-1fd1.cloud.databricks.com/
 description: null
 id: 85ea4527-3fd5-44b5-ab46-ded2db57629b
-label: question
+label: databricks
 metadata: {}
 name: databricks_tutorial
 recents:
