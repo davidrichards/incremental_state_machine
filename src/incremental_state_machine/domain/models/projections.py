@@ -95,3 +95,45 @@ class Discussion(BaseModel):
         # Replace questions list with questions dict
         data["questions"] = self.questions_dict
         return data
+
+
+class SnapshotDefault(BaseModel):
+    """Default projection for Snapshot - shows key fields in a clean format"""
+
+    id: str
+    label: Optional[str] = None
+    body: str
+    session: Optional[str] = None
+    created_at: str
+    updated_at: str
+
+    # Lists with non-empty items only
+    questions: List[str] = Field(default_factory=list)
+    designs: List[str] = Field(default_factory=list)
+    offers: List[str] = Field(default_factory=list)
+    engagements: List[str] = Field(default_factory=list)
+    tasks: List[str] = Field(default_factory=list)
+    builds: List[str] = Field(default_factory=list)
+    state_machines: List[str] = Field(default_factory=list)
+    agents: List[str] = Field(default_factory=list)
+    pipelines: List[str] = Field(default_factory=list)
+
+    @classmethod
+    def from_snapshot(cls, snapshot_data: Dict[str, Any]) -> "SnapshotDefault":
+        """Create a default projection from snapshot data"""
+        # Filter out empty lists to keep output clean
+        filtered_data = {}
+        for key, value in snapshot_data.items():
+            if isinstance(value, list) and len(value) == 0:
+                continue  # Skip empty lists
+            filtered_data[key] = value
+
+        return cls(**filtered_data)
+
+    def model_dump(self, **kwargs) -> Dict[str, Any]:
+        """Override model_dump to exclude empty lists"""
+        data = super().model_dump(**kwargs)
+        # Remove empty lists for cleaner output
+        return {
+            k: v for k, v in data.items() if not (isinstance(v, list) and len(v) == 0)
+        }
