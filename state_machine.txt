@@ -1,0 +1,46 @@
+States:
+- unauthorized
+- authorized
+- notebook_prepared
+- notebook_imported
+- job_created
+- job_running
+- job_completed
+- job_validated
+- logs_extracted
+- logs_exported
+- cleaned_up
+- error_detected
+- retrying_operation
+- assets_registered
+- ready_for_next_run
+
+Operations:
+- authenticate
+- prepare_notebook
+- import_notebook
+- create_job
+- run_job
+- confirm_job_success
+- validate_job
+- extract_job_logs
+- export_logs
+- cleanup_workspace
+
+Transitions:
+- unauthorized -> authorized
+- authorized -> notebook_prepared
+- notebook_prepared -> notebook_imported
+- notebook_imported -> job_created
+- job_created -> job_running
+- job_running -> job_completed
+- job_completed -> job_validated
+- job_validated -> logs_extracted
+- logs_extracted -> logs_exported
+- logs_exported -> cleaned_up
+- job_running -> error_detected
+- error_detected -> retrying_operation
+- retrying_operation -> job_running
+- job_validated -> assets_registered
+- cleaned_up -> ready_for_next_run
+

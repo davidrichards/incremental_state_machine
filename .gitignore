@@ -56,3 +56,5 @@ var/work/*
 # Compiled
 *.pyc
 *egg-info
+
+.ipynb_checkpoints
