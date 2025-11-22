@@ -8,6 +8,7 @@ import logging
 class Default(BaseModel):
     """Default projection for Context - shows key fields in a clean format"""
 
+    id: Optional[str] = None
     label: Optional[str] = None
     body: str
     session: Optional[str] = None

@@ -6,7 +6,7 @@ import json
 import importlib
 from pathlib import Path
 import typer
-from typing import Optional, Tuple, List
+from typing import Optional, Tuple, List, Annotated
 
 from incremental_state_machine.domain.models.context import Context
 
@@ -216,8 +216,8 @@ def current_context(label: Optional[str] = None) -> Context:
 
 @app.command()
 def get(
-    label: Optional[str] = typer.Option(
-        None, "--label", help="Filter by context label"
+    identifier: Optional[str] = typer.Argument(
+        None, help="Context identifier (label or ID)"
     ),
     version: Optional[str] = typer.Option(
         None, "--version", help="Filter by specific version (e.g., '1.0.0')"
@@ -232,7 +232,7 @@ def get(
     directory = resolve_contexts_directory()
 
     # Find matching context files
-    matching_files = find_context_files(directory, label, version)
+    matching_files = find_context_files(directory, identifier, version)
 
     # Get the most recently modified file
     most_recent_file = get_most_recent_file(matching_files)
@@ -251,8 +251,8 @@ def get(
 
 @app.command("list")
 def list_contexts(
-    label: Optional[str] = typer.Option(
-        None, "--label", help="Filter by context label"
+    identifier: Optional[str] = typer.Argument(
+        None, help="Context identifier (label or ID)"
     ),
     version: Optional[str] = typer.Option(
         None, "--version", help="Filter by specific version (e.g., '1.0.0')"
@@ -267,7 +267,7 @@ def list_contexts(
     directory = resolve_contexts_directory()
 
     # Find matching context files
-    matching_files = find_context_files(directory, label, version)
+    matching_files = find_context_files(directory, identifier, version)
 
     if not matching_files:
         typer.echo("No contexts found matching the criteria.")
